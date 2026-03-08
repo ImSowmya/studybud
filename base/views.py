@@ -10,4 +10,8 @@ rooms=[
 def home(request):
     return render(request, 'home.html', {"rooms": rooms})
 def room(request, pk):
-    return render(request, 'room.html', {"room_id":pk})
+    room_info = None
+    for room in rooms:
+        if str(room.get("id", "")) == pk:
+            room_info = room
+    return render(request, 'room.html', {"room":room_info})
